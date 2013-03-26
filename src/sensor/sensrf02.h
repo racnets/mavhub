@@ -69,8 +69,8 @@ namespace mavhub {
 
 	class SenSrf02 : public I2cSensor {
 		public:
-		//SenSrf02(unsigned short _dev_id, unsigned short _func_id, std::string _port, int _update_rate, int _debug, int _timings, int _gain, int _mode) throw(const char *);
-		SenSrf02(unsigned short _dev_id, unsigned short _func_id, std::string _port, int _update_rate, int _debug, int _timings, std::list< std::pair<int, int> > _chanmap_pairs) throw(const char *);
+		//SenSrf02(unsigned short _dev_id, unsigned short _comp_id, std::string _port, int _update_rate, int _debug, int _timings, int _gain, int _mode) throw(const char *);
+		SenSrf02(unsigned short _dev_id, unsigned short _comp_id, std::string _port, int _update_rate, int _debug, int _timings, std::list< std::pair<int, int> > _chanmap_pairs) throw(const char *);
 			virtual ~SenSrf02();
 			void print_debug();
 			int get_last_measurement();

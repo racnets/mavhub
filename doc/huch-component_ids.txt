@@ -29,3 +29,4 @@ Date: 2013-01-23 15:06:56 CET
     43   v_artoolkit_tracker      not mavhub: DetectRange.cpp                                   
     44   v_camctrl_app            control camera parameters: exposure, gain, ...                
     45   camctrl_neural_txosc     python functionality prototyping module                       
+    200  lin_sen_tool_app         huch linear sensor tool

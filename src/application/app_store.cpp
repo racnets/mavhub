@@ -30,6 +30,8 @@
 #include "attitude_filter_app/attitude_filter_app.h"
 #include "opengl_app.h"
 #include "slam_app.h"
+#include "lin_sen_tool_app.h"
+#include "fpga_cam_tool_app.h"
 #include "vision/v_oflow_app.h"
 #include "vision/v_oflow_odca_app.h"
 #include "vision/v_camctrl_app.h"
@@ -216,8 +218,10 @@ int AppStore::order(const std::string& app_name, const std::map<std::string, std
 	} else if(lowercase_name == "opengl_app") {
 #ifdef HAVE_MAVLINK_H
 #ifdef HAVE_GL_GLUT_H
+#ifdef HAVE_OPENCV
 		OpenGLApp *gl_app = new OpenGLApp(loglevel);
 		return ProtocolStack<mavlink_message_t>::instance().add_application(gl_app);
+#endif // HAVE_OPENCV
 #endif // HAVE_GL_GLUT_H
 #endif // HAVE_MAVLINK_H
 	} else if(lowercase_name == "slam_app") {
@@ -269,6 +273,20 @@ int AppStore::order(const std::string& app_name, const std::map<std::string, std
 #endif // CV_MINOR_VERSION
 #endif // HAVE_OPENCV2
 #endif // HAVE_GSTREAMER
+#endif // HAVE_MAVLINK
+	} else if(lowercase_name == "lin_sen_tool_app") {
+#ifdef HAVE_MAVLINK_H
+#ifdef HAVE_GL_GLUT_H
+		LinSenToolApp *lin_sen_tool_app = new LinSenToolApp(loglevel);
+		return ProtocolStack<mavlink_message_t>::instance().add_application(lin_sen_tool_app);
+#endif // HAVE_GL_GLUT_H
+#endif // HAVE_MAVLINK_H
+	} else if(lowercase_name == "fpga_cam_tool_app") {
+#ifdef HAVE_MAVLINK_H
+#ifdef HAVE_GL_GLUT_H
+		FPGACamToolApp *fpga_cam_tool_app = new FPGACamToolApp(loglevel);
+		return ProtocolStack<mavlink_message_t>::instance().add_application(fpga_cam_tool_app);
+#endif // HAVE_GL_GLUT_H
 #endif // HAVE_MAVLINK_H
 	} else if(lowercase_name == "plat_link_crrcsim_app") {
 #ifdef HAVE_MAVLINK_H

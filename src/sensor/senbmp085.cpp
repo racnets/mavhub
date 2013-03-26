@@ -14,13 +14,13 @@ namespace mavhub {
 
 const int SenBmp085::wait_oversampling[4] = {4500, 7500, 13500, 25500};
 
-SenBmp085::SenBmp085(unsigned short _dev_id, unsigned short _func_id, unsigned short _func_id1, unsigned short _func_id2, std::string _port, int _update_rate, int _debug, int _timings, int _update_rate_temp) throw(const char *):
+SenBmp085::SenBmp085(unsigned short _dev_id, unsigned short _comp_id, unsigned short _comp_id1, unsigned short _comp_id2, std::string _port, int _update_rate, int _debug, int _timings, int _update_rate_temp) throw(const char *):
 	update_rate_temp(_update_rate_temp) {
 	//FIXME Initialisierung
 	dev_id = _dev_id;
-	func_id = _func_id;
-	func_id1 = _func_id2;
-	func_id2 = _func_id2;
+	comp_id = _comp_id;
+	comp_id1 = _comp_id2;
+	comp_id2 = _comp_id2;
 	update_rate = _update_rate;
 	debug = _debug;
 	timings= _timings;
@@ -30,7 +30,7 @@ SenBmp085::SenBmp085(unsigned short _dev_id, unsigned short _func_id, unsigned s
 	status = RUNNING;	
 	try {
 		/* check config */
-		if ((get_data_pointer(func_id << 16) == NULL) || (get_data_pointer(func_id1 << 16) == NULL) || (get_data_pointer(func_id2 << 16) == NULL)) {
+		if ((get_data_pointer(comp_id << 16) == NULL) || (get_data_pointer(comp_id1 << 16) == NULL) || (get_data_pointer(comp_id2 << 16) == NULL)) {
 			throw "sensor(software code) doesn't support configured function";
 		}
 

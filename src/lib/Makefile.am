@@ -15,7 +15,9 @@ if COND_OPENGL
 noinst_LIBRARIES += libopengl.a
 
 libopengl_a_SOURCES = \
-	opengl/map_2d.cpp
+	opengl/map_2d.cpp \
+	opengl/array_1d.cpp \
+	opengl/array_2d.cpp
 endif
 
 if COND_OPENCV2

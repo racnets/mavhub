@@ -1,3 +1,5 @@
+#ifdef HAVE_OPENCV
+
 #include "map_2d.h"
 
 #include <iostream>	//cout
@@ -454,3 +456,4 @@ void Map2D::rotate(const float roll, const float pitch, const float yaw, bool de
 
 } // namespace opengl
 } // namespace hub
+#endif // HAVE_OPENCV

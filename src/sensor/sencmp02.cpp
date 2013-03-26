@@ -15,7 +15,7 @@ using namespace std;
 namespace mavhub {
 
 	SenCmp02::SenCmp02(unsigned short _dev_id, 
-										 unsigned short _func_id, 
+										 unsigned short _comp_id, 
 										 std::string _port, 
 										 int _update_rate, 
 										 int _debug, 
@@ -28,7 +28,7 @@ namespace mavhub {
 	{
 	//FIXME Initialisierung
 	dev_id = _dev_id;
-	func_id = _func_id;
+	comp_id = _comp_id;
 	update_rate = _update_rate;
 	debug = _debug;
 	timings = _timings; 
@@ -48,7 +48,7 @@ namespace mavhub {
 	status = RUNNING;	
 	try {
 		/* check config */
-		if (get_data_pointer(func_id << 16) == NULL) {
+		if (get_data_pointer(comp_id << 16) == NULL) {
 			throw "sensor doesn't support configured function";
 		}
 

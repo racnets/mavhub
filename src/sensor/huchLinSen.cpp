@@ -14,10 +14,10 @@ namespace mavhub {
 	const int SenHmc5843::waitFreq[] = {2000000, 1000000, 500000, 200000, 100000, 50000, 20000, 10000};
 	const int SenHmc5843::gainFactor[] =  {1620,1300,970,780,530,460,390,280};
 
-	SenHmc5843::SenHmc5843(unsigned short _dev_id, unsigned short _comp_id, string _port, int _update_rate, int _debug, int _timings, int _gain, int _mode) throw(const char *) {
+	SenHmc5843::SenHmc5843(unsigned short _dev_id, unsigned short _func_id, string _port, int _update_rate, int _debug, int _timings, int _gain, int _mode) throw(const char *) {
 		//FIXME Initialisierung
 		dev_id = _dev_id;
-		comp_id = _comp_id;
+		func_id = _func_id;
 		update_rate = _update_rate;
 		debug = _debug;
 		timings = _timings; 
@@ -34,7 +34,7 @@ namespace mavhub {
 		status = RUNNING;	
 		try {
 			/* check config */
-			if (get_data_pointer(comp_id << 16) == NULL) {
+			if (get_data_pointer(func_id << 16) == NULL) {
 				throw "sensor doesn't support configured function";
 			}
 

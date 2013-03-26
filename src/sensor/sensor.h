@@ -3,12 +3,13 @@
 
 #include "lib/hub/thread.h"
 
-// sensor typ definitions
+// sensor typ definitions: function id
 #define ALTITUDE_SENSOR		0x115
 #define KOMPASS_SENSOR		0x116
 #define TEMPERATURE_SENSOR	0x121
 #define PRESSURE_SENSOR		0x122
 #define DISTANCE_SENSOR		0x132
+#define OPTICAL_FLOW_SENSOR	0x210
 
 namespace mavhub {
 
@@ -26,8 +27,10 @@ namespace mavhub {
 
 			pthread_mutex_t data_mutex;
 
+			// component id
+			unsigned short comp_id;
+			// unique device id - needed for sensor manager to identify
 			unsigned short dev_id;
-			unsigned short func_id;
 			int update_rate;
 			int debug;
 			int timings;

@@ -1,0 +1,27 @@
+# This is a config file for the huch-linSen sensors
+#
+
+# identification
+dev_id = 0x5843
+comp_id = 0x210
+
+
+# hardware connection
+port = /dev/i2c-0
+address = 0x18
+
+# hardware description
+# mounting etc.
+
+# update rate
+update_rate = 1
+
+# exposure to 10ms
+exposure = 100
+# pixel clock to 500kHz
+pixelclock = 50
+
+# show debug information
+debug = 1 
+timings = 0
+

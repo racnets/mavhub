@@ -1,5 +1,5 @@
-#ifndef _SENHMC5843_H_
-#define _SENHMC5843_H_
+#ifndef _HUCHLINSEN_H_
+#define _HUCHLINSEN_H_
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -13,7 +13,7 @@
 
 #include "i2csensor.h"
 
-#define	HMC5843_ADR	0x1E
+#define	HUCHLINSEN_ADR	0x18
 
 #define CRA	0x00
 #define CRB	0x01
@@ -52,10 +52,10 @@
 
 namespace mavhub {
 
-	class SenHmc5843 : public I2cSensor {
+	class HuchLinSen : public I2cSensor {
 		public:
-			SenHmc5843(unsigned short _dev_id, unsigned short _comp_id, std::string _port, int _update_rate, int _debug, int _timings, int _gain, int _mode) throw(const char *);
-			virtual ~SenHmc5843();
+			HuchLinSen(unsigned short _dev_id, unsigned short _func_id, std::string _port, int _update_rate, int _debug, int _timings, int _gain, int _mode) throw(const char *);
+			virtual ~HuchLinSen();
 			void print_debug();
 
 		protected:

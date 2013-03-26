@@ -13,6 +13,7 @@ libsensor_a_SOURCES = \
 	sensrf02.cpp \
 	sencmp02.cpp \
 	senExpCtrl.cpp \
+	senhuchLinSen.cpp \
 	sensor_factory.cpp \
 	sensormanager.cpp \
 	../module/filter_median.cpp

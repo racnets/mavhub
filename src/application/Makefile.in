@@ -82,7 +82,9 @@ am_libapp_a_OBJECTS = acc_calibration_app.$(OBJEXT) \
 	opengl_app.$(OBJEXT) slam_app.$(OBJEXT) \
 	v_camctrl_app.$(OBJEXT) v_oflow_app.$(OBJEXT) \
 	v_oflow_odca_app.$(OBJEXT) ofdifferential.$(OBJEXT) \
-	OpticalFlow.$(OBJEXT) ofmodel.$(OBJEXT)
+	OpticalFlow.$(OBJEXT) ofmodel.$(OBJEXT) \
+	lin_sen_tool_app.$(OBJEXT) \
+	fpga_cam_tool_app.$(OBJEXT)
 libapp_a_OBJECTS = $(am_libapp_a_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/src
 depcomp = $(SHELL) $(top_srcdir)/auxdir/depcomp
@@ -181,8 +183,6 @@ PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
 RANLIB = @RANLIB@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
@@ -269,6 +269,8 @@ libapp_a_SOURCES = \
 	opengl_app.cpp \
 	slam_app.cpp \
 	vision/v_camctrl_app.cpp \
+	lin_sen_tool_app.cpp \
+	fpga_cam_tool_app.cpp \
 	vision/v_oflow_app.cpp \
 	vision/v_oflow_odca_app.cpp \
 	vision/ofdifferential.cpp \
@@ -328,6 +330,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/acc_calibration_app.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/app_store.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/attitude_filter_app.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/lin_sen_tool_app.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/fpga_cam_tool_app.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/core_app.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/fiducal_app.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/fiducal_control_app.Po@am__quote@

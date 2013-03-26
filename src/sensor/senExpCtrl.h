@@ -27,7 +27,7 @@ namespace mavhub {
 class SenExpCtrl : public I2cSensor {
 	public:
 		SenExpCtrl(unsigned short _dev_id, 
-							 unsigned short _func_id, 
+							 unsigned short _comp_id, 
 							 std::string _port, 
 							 int _update_rate, 
 							 int _debug, 

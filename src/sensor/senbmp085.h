@@ -35,7 +35,7 @@ namespace mavhub {
 
 	class SenBmp085 : public I2cSensor {
 		public:
-			SenBmp085(unsigned short _dev_id, unsigned short _func_id, unsigned short _func_id1, unsigned short _func_id2, std::string _port, int _update_rate, int _debug, int _timings, int _update_rate_temp) throw(const char *);
+			SenBmp085(unsigned short _dev_id, unsigned short _comp_id, unsigned short _comp_id1, unsigned short _comp_id2, std::string _port, int _update_rate, int _debug, int _timings, int _update_rate_temp) throw(const char *);
 			virtual ~SenBmp085();
 			void print_debug();
 						
@@ -61,8 +61,8 @@ namespace mavhub {
 			mavlink_huch_altitude_t altitude;
 #endif // MAVLINK_ENABLED_HUCH
 
-			unsigned short func_id1;
-			unsigned short func_id2;
+			unsigned short comp_id1;
+			unsigned short comp_id2;
 			int oversampling;
 			int pressure_0;
 			int update_rate_temp;

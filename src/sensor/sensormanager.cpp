@@ -1,3 +1,10 @@
+/* 
+ * sensor manager
+ * 
+ * sensor is addressed by a concatenation of:
+ * 		function id - higher word 
+ * 		device id	- lower word
+ */		
 #include "sensormanager.h"
 #include "core/logger.h"
 #include <sstream> //stringstream

@@ -18,9 +18,10 @@ libapp_a_SOURCES = \
 	opengl_app.cpp \
 	slam_app.cpp \
 	vision/v_camctrl_app.cpp \
+	lin_sen_tool_app.cpp \
+	fpga_cam_tool_app.cpp \
 	vision/v_oflow_app.cpp \
 	vision/v_oflow_odca_app.cpp \
 	vision/ofdifferential.cpp \
 	vision/OpticalFlow.cpp \
 	vision/ofmodel.cpp
-

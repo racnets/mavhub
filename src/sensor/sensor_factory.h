@@ -12,6 +12,7 @@
 #include "senExpCtrl.h"
 #include "sensrf02.h"
 #include "sencmp02.h"
+#include "senhuchLinSen.h"
 
 namespace mavhub {
 	class SensorFactory {

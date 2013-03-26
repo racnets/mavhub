@@ -84,8 +84,10 @@ am__libgstreamer_a_SOURCES_DIST = gstreamer/video_server.cpp
 libgstreamer_a_OBJECTS = $(am_libgstreamer_a_OBJECTS)
 libopengl_a_AR = $(AR) $(ARFLAGS)
 libopengl_a_LIBADD =
-am__libopengl_a_SOURCES_DIST = opengl/map_2d.cpp
-@COND_OPENGL_TRUE@am_libopengl_a_OBJECTS = map_2d.$(OBJEXT)
+am__libopengl_a_SOURCES_DIST = opengl/map_2d.cpp opengl/array_1d.cpp opengl/array_2d.cpp
+@COND_OPENGL_TRUE@am_libopengl_a_OBJECTS = map_2d.$(OBJEXT) \
+@COND_OPENGL_TRUE@	array_1d.$(OBJEXT) \
+@COND_OPENGL_TRUE@	array_2d.$(OBJEXT)
 libopengl_a_OBJECTS = $(am_libopengl_a_OBJECTS)
 libslam_a_AR = $(AR) $(ARFLAGS)
 libslam_a_LIBADD =
@@ -194,8 +196,6 @@ PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
 RANLIB = @RANLIB@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
@@ -271,7 +271,9 @@ noinst_LIBRARIES = $(am__append_2) $(am__append_3) $(am__append_4)
 @COND_USE_GSTREAMER_TRUE@	gstreamer/video_server.cpp
 
 @COND_OPENGL_TRUE@libopengl_a_SOURCES = \
-@COND_OPENGL_TRUE@	opengl/map_2d.cpp
+@COND_OPENGL_TRUE@	opengl/map_2d.cpp \
+@COND_OPENGL_TRUE@	opengl/array_1d.cpp \
+@COND_OPENGL_TRUE@	opengl/array_2d.cpp
 
 @COND_OPENCV2_TRUE@libslam_a_SOURCES = \
 @COND_OPENCV2_TRUE@	slam/features.cpp \
@@ -337,6 +339,8 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/array_1d.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/array_2d.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/bundleadjust.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/features.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/map.Po@am__quote@
@@ -386,6 +390,34 @@ map_2d.obj: opengl/map_2d.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='opengl/map_2d.cpp' object='map_2d.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o map_2d.obj `if test -f 'opengl/map_2d.cpp'; then $(CYGPATH_W) 'opengl/map_2d.cpp'; else $(CYGPATH_W) '$(srcdir)/opengl/map_2d.cpp'; fi`
+
+array_1d.o: opengl/array_1d.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT array_1d.o -MD -MP -MF $(DEPDIR)/array_1d.Tpo -c -o array_1d.o `test -f 'opengl/array_1d.cpp' || echo '$(srcdir)/'`opengl/array_1d.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/array_1d.Tpo $(DEPDIR)/array_1d.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='opengl/array_1d.cpp' object='array_1d.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o array_1d.o `test -f 'opengl/array_1d.cpp' || echo '$(srcdir)/'`opengl/array_1d.cpp
+
+array_1d.obj: opengl/array_1d.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT array_1d.obj -MD -MP -MF $(DEPDIR)/array_1d.Tpo -c -o array_1d.obj `if test -f 'opengl/array_1d.cpp'; then $(CYGPATH_W) 'opengl/array_1d.cpp'; else $(CYGPATH_W) '$(srcdir)/opengl/array_1d.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/array_1d.Tpo $(DEPDIR)/array_1d.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='opengl/array_1d.cpp' object='array_1d.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o array_1d.obj `if test -f 'opengl/array_1d.cpp'; then $(CYGPATH_W) 'opengl/array_1d.cpp'; else $(CYGPATH_W) '$(srcdir)/opengl/array_1d.cpp'; fi`
+
+array_2d.o: opengl/array_2d.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT array_2d.o -MD -MP -MF $(DEPDIR)/array_2d.Tpo -c -o array_2d.o `test -f 'opengl/array_2d.cpp' || echo '$(srcdir)/'`opengl/array_2d.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/array_2d.Tpo $(DEPDIR)/array_2d.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='opengl/array_2d.cpp' object='array_2d.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o array_2d.o `test -f 'opengl/array_2d.cpp' || echo '$(srcdir)/'`opengl/array_2d.cpp
+
+array_2d.obj: opengl/array_2d.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT array_2d.obj -MD -MP -MF $(DEPDIR)/array_2d.Tpo -c -o array_2d.obj `if test -f 'opengl/array_2d.cpp'; then $(CYGPATH_W) 'opengl/array_2d.cpp'; else $(CYGPATH_W) '$(srcdir)/opengl/array_2d.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/array_2d.Tpo $(DEPDIR)/array_2d.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='opengl/array_2d.cpp' object='array_2d.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o array_2d.obj `if test -f 'opengl/array_2d.cpp'; then $(CYGPATH_W) 'opengl/array_2d.cpp'; else $(CYGPATH_W) '$(srcdir)/opengl/array_2d.cpp'; fi`
 
 features.o: slam/features.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT features.o -MD -MP -MF $(DEPDIR)/features.Tpo -c -o features.o `test -f 'slam/features.cpp' || echo '$(srcdir)/'`slam/features.cpp

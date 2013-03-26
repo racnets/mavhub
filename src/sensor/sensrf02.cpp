@@ -17,13 +17,13 @@ namespace mavhub {
 
 	const int SenSrf02::waitFreq[] = {2000000, 1000000, 500000, 200000, 100000, 50000, 20000, 10000};
 
-	//SenSrf02::SenSrf02(unsigned short _dev_id, unsigned short _func_id, string _port, int _update_rate, int _debug, int _timings, int _gain, int _mode) throw(const char *) {
-	SenSrf02::SenSrf02(unsigned short _dev_id, unsigned short _func_id, string _port, int _update_rate, int _debug, int _timings, std::list< std::pair<int, int> > _chanmap_pairs) throw(const char *) :
+	//SenSrf02::SenSrf02(unsigned short _dev_id, unsigned short _comp_id, string _port, int _update_rate, int _debug, int _timings, int _gain, int _mode) throw(const char *) {
+	SenSrf02::SenSrf02(unsigned short _dev_id, unsigned short _comp_id, string _port, int _update_rate, int _debug, int _timings, std::list< std::pair<int, int> > _chanmap_pairs) throw(const char *) :
 		chanmap(1)
 	{	
 		//FIXME Initialisierung
 		dev_id = _dev_id;
-		func_id = _func_id;
+		comp_id = _comp_id;
 		update_rate = _update_rate;
 		debug = _debug;
 		timings = _timings; 
@@ -52,7 +52,7 @@ namespace mavhub {
 		status = RUNNING;	
 		try {
 			// /* check config */
-			// if (get_data_pointer(func_id << 16) == NULL) {
+			// if (get_data_pointer(comp_id << 16) == NULL) {
 			// 	throw "sensor doesn't support configured function";
 			// }
 
