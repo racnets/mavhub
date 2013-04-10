@@ -88,7 +88,6 @@ namespace mavhub {
 			else if (sensor_name == "cmp02")
 				s = new SenCmp02(dev_id, comp_id, port, update_rate, debug, timings, chanmap_pairs);
 			else if (sensor_name == "huch-linSen")
-				Logger::debug(address);
 				s = new SenHuchLinSen(dev_id, comp_id, port, address, update_rate, debug, timings, exposure, pixelclock);
 		}
 		catch (const char *message) {

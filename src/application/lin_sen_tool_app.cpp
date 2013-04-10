@@ -1,3 +1,6 @@
+#include <list> //list
+#include <cmath> //pow, log10
+
 #include "lin_sen_tool_app.h"
 
 #ifdef HAVE_MAVLINK_H
@@ -51,6 +54,9 @@ void LinSenToolApp::handle_input(const mavlink_message_t &msg) {
 			}
 			Array1D::addData(buffer, k);
 			log("respond raw data ", k, Logger::LOGLEVEL_DEBUG);
+			
+			/* analyse data */
+			//analyseData(buffer, k);
 
 			/* update time */
 			Array1D::params[Array1D::TIME].status = Array1D::COMPLETE;
@@ -118,7 +124,8 @@ void LinSenToolApp::handle_input(const mavlink_message_t &msg) {
 	
 			Lock buf_lock(buf_mutex);
 
-			log("got mavlink oflow packet ", oflow.flow_x, Logger::LOGLEVEL_DEBUG);
+			log("got mavlink oflow packet ", Logger::LOGLEVEL_DEBUG);
+			//log(oflow.flow_x, oflow.flow_y, Logger::LOGLEVEL_INFO);
 			Array1D::params[Array1D::RESULT].value = oflow.flow_x;
 			if (Array1D::params[Array1D::RESULT].status == Array1D::WAITING) {
 				Array1D::params[Array1D::RESULT].status = Array1D::COMPLETE;
@@ -245,6 +252,55 @@ void LinSenToolApp::send_heartbeat() {
 	Lock tx_lock(tx_mav_mutex);
 	mavlink_msg_heartbeat_pack(system_id(), component_id, &tx_mav_msg, MAV_TYPE_QUADROTOR, MAV_AUTOPILOT_INVALID, MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, 0, MAV_STATE_ACTIVE);
 	AppLayer<mavlink_message_t>::send(tx_mav_msg);
+}
+
+void LinSenToolApp::analyseData(uint16_t *datap, uint8_t size) {
+	static std::list<uint16_t> old_data;
+	
+	log("linSen analyse:", Logger::LOGLEVEL_INFO);
+	
+	/* update rate */
+	static uint64_t start = get_time_us();
+	static uint64_t frequency = 1000000;
+	uint64_t now;
+
+	now = get_time_us();
+	frequency = (15 * frequency + now - start) / 16;
+	start = now;
+	log("\tupdate rate: ", 1000000 / frequency, Logger::LOGLEVEL_INFO);
+	
+	/* sad & mse between 2 lines */
+	int diff_sad = 0;
+	float diff_mse = 0;
+
+	if (!old_data.empty()) {
+		for (int i=0; i < size; ++i) {
+			diff_sad += abs(datap[i] - old_data.front());
+			diff_mse += std::pow(datap[i] - old_data.front(), 2);
+			old_data.pop_front();
+		}
+	}
+	old_data.assign(datap, datap + size);
+	log("\tsad: ", diff_sad, Logger::LOGLEVEL_INFO);	
+	log("\tmse: ", diff_mse / size, Logger::LOGLEVEL_INFO);	
+
+	/* max intensity */
+	static int max_intensity = 0;
+
+	for (int i=0; i < size; ++i) {
+		if (max_intensity < datap[i]) max_intensity = datap[i];
+	}
+	log("\tI_max: ", max_intensity, Logger::LOGLEVEL_INFO);
+	
+	/* PSNR */
+	static float psnr = 0;
+	float tmp_psnr;
+	
+	if (diff_mse != 0) {
+		tmp_psnr = 10 * std::log10(std::pow(max_intensity, 2) / (diff_mse / size));
+		psnr = (63 * psnr + tmp_psnr) / 64;
+	}
+	log("\tPSNR: ", psnr, Logger::LOGLEVEL_INFO);
 }
 
 

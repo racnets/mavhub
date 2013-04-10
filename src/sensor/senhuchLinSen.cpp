@@ -126,7 +126,7 @@ namespace mavhub {
 				{ // begin of data mutex scope
 					cpp_pthread::Lock ri_lock(data_mutex);
 					oflow.time_usec = end;
-					oflow.flow_x = (int16_t)((buffer[0] << 8) + buffer[1]);
+					oflow.flow_x = (int16_t)((buffer[1] << 8) | buffer[0]);
 				} // end of data mutex scope
 				// not supported
 				//publish_data(end);

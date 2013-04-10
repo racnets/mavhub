@@ -39,10 +39,11 @@ namespace mavhub {
 			unsigned int height;
 			char buffer[921600];
 			pthread_mutex_t buf_mutex;
-
+			
 			void send_heartbeat();
 			void processCtrl(mavlink_huch_lin_sen_ctrl_t *ctrl);
             void send_ctrl(HUCH_LIN_SEN_CTRL_CMD cmd, uint16_t arg);
+            void analyseData(uint16_t *datap, uint8_t size);
 	};
 
 } // namespace mavhub
